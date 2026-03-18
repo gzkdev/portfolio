@@ -2,30 +2,30 @@ export const PROJECTS = [
   {
     name: "Mbị̀àkọ́",
     description:
-      "A CLI tool for losslessly compressing image files built with TypeScript",
+      "A high-performance CLI tool built with TypeScript for lossless image compression, optimizing assets without degrading quality.",
     creationDate: "2024",
   },
   {
     name: "Odyssey Design system",
     description:
-      "Design system tailored for an on-chain options trading protocol",
+      "A comprehensive, accessible design system tailored specifically for an on-chain options trading protocol, ensuring consistent UI patterns.",
     creationDate: "2023",
   },
   {
     name: "DApp Kit",
     description:
-      "CLI tool for bootstrapping Dapps with standard dependencies on different networks",
+      "A powerful CLI utility designed to bootstrap decentralized applications with standardized dependencies across multiple blockchain networks.",
     creationDate: "2023",
   },
   {
     name: "Solana Wallet Kit",
-    description: "An abstraction layer over Solana wallet connection library",
+    description: "A streamlined abstraction layer built over standard Solana wallet connection libraries, simplifying authentication and transaction interactions.",
     creationDate: "2023",
   },
   {
     name: "Minimal vDOM",
     description:
-      "Minimal implementation of a virtual DOM strictly for experimentation and learning",
+      "A lightweight, from-scratch implementation of a Virtual DOM created purely for deep-dive experimentation and educational purposes.",
     creationDate: "2023",
   },
 ]
@@ -34,11 +34,11 @@ export const PROTOTYPES = [
   {
     id: "1",
     name: "Dynamic Island",
-    description: "iOS interaction rebuilt pattern.",
+    description: "A fluid, physics-driven recreation of the iOS Dynamic Island interaction pattern using Framer Motion.",
   },
   {
     id: "2",
     name: "Fluid Tabs",
-    description: "Layout animations using Motion.",
+    description: "An exploration of layout animations utilizing shared layout IDs to create liquid, organic tab transitions.",
   },
 ]
