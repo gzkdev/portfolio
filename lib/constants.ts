@@ -19,7 +19,7 @@ export const PROJECTS = [
   },
   {
     name: "Solana Wallet Kit",
-    description: "An abstraction layer over solana wallet connection library",
+    description: "An abstraction layer over Solana wallet connection library",
     creationDate: "2023",
   },
   {
