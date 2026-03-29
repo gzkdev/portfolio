@@ -1,30 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { BlogPostItem, ExperimentItem } from './types';
 
 const CONTENT_PATH = path.join(process.cwd(), 'content');
 
-export type BlogPost = {
-  slug: string;
-  title: string;
-  subtitle?: string;
-  date: string;
-  tags?: string[];
-  content: string;
-};
-
-export type WorkItem = {
-  slug: string;
-  title: string;
-  description: string;
-  date: string;
-  type: 'project' | 'prototype';
-  link?: string;
-  content: string;
-};
-
-export async function getBlogPosts(): Promise<BlogPost[]> {
-  const postsPath = path.join(CONTENT_PATH, 'writing');
+export async function getBlogPosts(): Promise<BlogPostItem[]> {
+  const postsPath = path.join(CONTENT_PATH, 'blog');
   if (!fs.existsSync(postsPath)) return [];
 
   const files = fs.readdirSync(postsPath).filter((f) => f.endsWith('.mdx'));
@@ -41,7 +23,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
       date: data.date,
       tags: data.tags,
       content,
-    } as BlogPost;
+    } as BlogPostItem;
   });
 
   return posts.sort(
@@ -51,8 +33,8 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 
 export async function getBlogPostBySlug(
   slug: string,
-): Promise<BlogPost | null> {
-  const filePath = path.join(CONTENT_PATH, 'writing', `${slug}.mdx`);
+): Promise<BlogPostItem | null> {
+  const filePath = path.join(CONTENT_PATH, 'blog', `${slug}.mdx`);
   if (!fs.existsSync(filePath)) return null;
 
   const source = fs.readFileSync(filePath, 'utf8');
@@ -65,40 +47,42 @@ export async function getBlogPostBySlug(
     date: data.date,
     tags: data.tags,
     content,
-  } as BlogPost;
+  } satisfies BlogPostItem;
 }
 
-export async function getWorkItems(): Promise<WorkItem[]> {
-  const worksPath = path.join(CONTENT_PATH, 'works');
-  if (!fs.existsSync(worksPath)) return [];
+export async function getExperiments(): Promise<ExperimentItem[]> {
+  const experimentsPath = path.join(CONTENT_PATH, 'experiments');
+  if (!fs.existsSync(experimentsPath)) return [];
 
-  const files = fs.readdirSync(worksPath).filter((f) => f.endsWith('.mdx'));
+  const files = fs
+    .readdirSync(experimentsPath)
+    .filter((f) => f.endsWith('.mdx'));
 
-  const works = files.map((file) => {
-    const filePath = path.join(worksPath, file);
+  const experiments = files.map((file) => {
+    const filePath = path.join(experimentsPath, file);
     const source = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(source);
 
     return {
       slug: file.replace('.mdx', ''),
+      name: data.name,
       title: data.title,
       description: data.description,
       date: data.date,
-      type: data.type,
-      link: data.link,
+      url: data.url,
       content,
-    } as WorkItem;
+    } as ExperimentItem;
   });
 
-  return works.sort(
+  return experiments.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
 }
 
-export async function getWorkItemBySlug(
+export async function getExperimentBySlug(
   slug: string,
-): Promise<WorkItem | null> {
-  const filePath = path.join(CONTENT_PATH, 'works', `${slug}.mdx`);
+): Promise<ExperimentItem | null> {
+  const filePath = path.join(CONTENT_PATH, 'experiments', `${slug}.mdx`);
   if (!fs.existsSync(filePath)) return null;
 
   const source = fs.readFileSync(filePath, 'utf8');
@@ -106,11 +90,11 @@ export async function getWorkItemBySlug(
 
   return {
     slug,
+    name: data.name,
     title: data.title,
     description: data.description,
     date: data.date,
-    type: data.type,
-    link: data.link,
+    url: data.url,
     content,
-  } as WorkItem;
+  } as ExperimentItem;
 }
