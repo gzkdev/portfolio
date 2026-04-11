@@ -1,32 +1,31 @@
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import { cn } from '@/lib/utils';
-import { Footer } from '@/components/footer';
 import { ThemeProvider } from '@/components/theme-provider';
+import { cn } from '@/lib/utils';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const fontSans = Geist({
+  subsets: ['latin'],
+  variable: '--font-sans',
+});
 
-const fontMono = JetBrains_Mono({
+const fontMono = Geist_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
 });
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
-      className={cn(fontMono.variable, inter.variable)}
+      className={cn(fontMono.variable, fontSans.variable)}
       suppressHydrationWarning
     >
       <body>
         <ThemeProvider enableSystem defaultTheme="light">
           {children}
         </ThemeProvider>
-        <Footer />
       </body>
     </html>
   );

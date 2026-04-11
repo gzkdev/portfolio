@@ -144,14 +144,10 @@
   }
 
   body {
-    @apply bg-background text-foreground mx-auto flex min-h-svh max-w-xl flex-col gap-12 px-6 pt-8 sm:pt-16;
+    @apply bg-background text-foreground px-6 py-20;
   }
 
   a {
     @apply text-blue-600 transition-opacity hover:opacity-80 dark:text-blue-300;
-  }
-
-  p {
-    @apply leading-relaxed;
   }
 }
