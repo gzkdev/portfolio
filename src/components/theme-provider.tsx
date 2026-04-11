@@ -1,7 +1,7 @@
 'use client';
 
-import * as React from 'react';
 import { ThemeProvider as NextThemesProvider, useTheme } from 'next-themes';
+import { useEffect } from 'react';
 
 function ThemeProvider({
   children,
@@ -37,7 +37,9 @@ function isTypingTarget(target: EventTarget | null) {
 function ThemeHotkey() {
   const { resolvedTheme, setTheme } = useTheme();
 
-  React.useEffect(() => {
+  useEffect(() => {
+    const controller = new AbortController();
+
     function onKeyDown(event: KeyboardEvent) {
       if (event.defaultPrevented || event.repeat) {
         return;
@@ -58,10 +60,12 @@ function ThemeHotkey() {
       setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
     }
 
-    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('keydown', onKeyDown, {
+      signal: controller.signal,
+    });
 
     return () => {
-      window.removeEventListener('keydown', onKeyDown);
+      controller.abort();
     };
   }, [resolvedTheme, setTheme]);
 
