@@ -1,6 +1,6 @@
+import { cn } from '@/lib/utils';
 import React from 'react';
 import { highlight } from 'sugar-high';
-import { cn } from '@/lib/utils';
 
 interface CodeProps extends React.HTMLAttributes<HTMLElement> {
   code?: string;
