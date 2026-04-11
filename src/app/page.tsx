@@ -28,17 +28,31 @@ export default async function Page() {
             engineering.
           </p>
 
-          <p>
-            You can reach me on{' '}
-            <a
-              href="http://x.com/ezihegodswill"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              X/Twitter
-            </a>{' '}
-            or via <a href="mailto:ezihegodswill01@gmail.com">Email</a>
-          </p>
+          <ul className="flex items-center gap-2">
+            <li>
+              <a
+                href="https://x.com/ezihegodswill"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                X/Twitter
+              </a>
+            </li>
+            •
+            <li>
+              <a
+                href="https://github.com/gzkdev"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+            </li>
+            •
+            <li>
+              <a href="mailto:ezihegodswill01@gmail.com">Email</a>
+            </li>
+          </ul>
         </div>
       </section>
     </main>
