@@ -1,13 +1,10 @@
-import { notFound } from 'next/navigation';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import { getBlogPostBySlug, getBlogPosts } from '@/lib/mdx';
 import { MDXComponents } from '@/components/mdx-components';
-import { PageHeader } from '@/components/page-header';
+import { getBlogPostBySlug, getBlogPosts } from '@/lib/mdx';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import { notFound } from 'next/navigation';
 
 type PageProps = {
-  params: Promise<{
-    slug: string;
-  }>;
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
@@ -24,16 +21,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   return (
-    <article className="space-y-6">
-      <PageHeader
-        title={post.title}
-        date={post.date}
-        backHref="/"
-        backLabel="Blog"
-      />
-      <div className="prose prose-neutral dark:prose-invert max-w-none space-y-4">
-        <MDXRemote source={post.content} components={MDXComponents} />
-      </div>
-    </article>
+    <div className="prose prose-neutral dark:prose-invert max-w-none space-y-4">
+      <MDXRemote source={post.content} components={MDXComponents} />
+    </div>
   );
 }
