@@ -6,7 +6,7 @@ export default async function Page() {
 
         <div className="space-y-4">
           <p>
-            Frontend Engineer building onchain and AI-native apps and tools.
+            Software engineer building onchain and AI-native apps and tools.
           </p>
 
           <p>
